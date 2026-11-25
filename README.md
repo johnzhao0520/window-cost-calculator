@@ -1,5 +1,7 @@
 # Window Replacement Cost Calculator
 
+> Published as a read-only reference: see it, use the live site, don't copy it. See [License](#license).
+
 A self-contained, single-file window replacement cost calculator. It gives a material + labor breakdown by window type, glass package, number of windows, stories and US state, and shows a typical price range around the estimate.
 
 This repo is the lightweight, public demo of the calculator on **[windowcosthq.com](https://windowcosthq.com/)** — a site of independent window replacement cost guides, published price data and ZIP-level pricing pages.
@@ -40,4 +42,4 @@ Output is materials, labor, per-window cost, a total and a ±18% typical range. 
 
 ## License
 
-Code (HTML/CSS/JS) is MIT — see [LICENSE](LICENSE). The WindowCostHQ name, price model and copy are © WindowCostHQ.
+All rights reserved — published for reading and directory listings, not for reuse. Details in [LICENSE](LICENSE). The WindowCostHQ name, price model and copy are © WindowCostHQ. If you want to reuse the calculator, ask: hello@windowcosthq.com.
