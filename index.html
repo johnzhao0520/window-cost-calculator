@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Window Replacement Cost Calculator (2026) — WindowCostHQ</title>
+<meta name="description" content="Free standalone window replacement cost calculator: material and labor breakdown by window type, glass, stories and state, based on 2026 public market price medians.">
+<link rel="canonical" href="https://windowcosthq.com/window-cost-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Window Replacement Cost Calculator (2026)">
+<meta property="og:description" content="Estimate window replacement material and labor cost. Standalone single-file demo of the WindowCostHQ calculator.">
+<meta property="og:url" content="https://windowcosthq.com/window-cost-calculator/">
+<meta name="robots" content="index,follow">
+<meta name="description" content="Calculate vinyl window replacement cost by window type, material, glass, and state. See material and labor breakdown for 2026.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#1a1f26;background:#f6f8fa}
+.wrap{max-width:860px;margin:0 auto;padding:22px 18px 60px}
+h1{font-size:27px;line-height:1.25;letter-spacing:-.4px;margin-bottom:8px}
+.sub{color:#5a6572;font-size:15px;margin-bottom:22px}
+.card{background:#fff;border:1px solid #e2e8ef;border-radius:12px;padding:22px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:13px;font-weight:600;color:#39434f;margin-bottom:5px}
+select,input{width:100%;padding:10px 11px;font-size:15px;border:1px solid #cfd8e3;border-radius:8px;background:#fff;color:#1a1f26}
+select:focus,input:focus{outline:2px solid #2d7d5a;outline-offset:1px;border-color:#2d7d5a}
+button{width:100%;padding:13px;font-size:16px;font-weight:650;color:#fff;background:#2d7d5a;border:0;border-radius:9px;cursor:pointer;margin-top:16px}
+button:hover{background:#256a4c}
+.res{display:none}
+.res.on{display:block}
+.total{font-size:38px;font-weight:700;letter-spacing:-1px;color:#1a1f26;line-height:1.1}
+.rng{font-size:15px;color:#5a6572;margin-top:3px}
+.brk{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px;padding-top:18px;border-top:1px solid #e8edf3}
+.brk div{text-align:center}
+.brk .k{font-size:12px;color:#6b7684;text-transform:uppercase;letter-spacing:.4px}
+.brk .v{font-size:18px;font-weight:650;margin-top:3px}
+.ad{border:1px dashed #c9d4e0;border-radius:9px;padding:26px;text-align:center;color:#8a95a3;font-size:12.5px;background:#fbfcfd;margin:16px 0}
+.lead{background:#f0f7f3;border:1px solid #cfe5d9;border-radius:12px;padding:22px;margin-top:16px}
+.lead h3{font-size:17px;margin-bottom:5px}
+.lead p{font-size:14px;color:#4d5a67;margin-bottom:14px}
+.lead .row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+@media(max-width:640px){.lead .row{grid-template-columns:1fr}}
+.tc{font-size:11.5px;color:#6b7684;line-height:1.5;margin-top:10px}
+.cta{display:block;text-align:center;padding:13px;border-radius:9px;background:#2d7d5a;color:#fff;font-weight:650;text-decoration:none}
+.cta:hover{background:#256a4c}
+a{color:#256a4c}
+footer{margin-top:26px;padding-top:16px;border-top:1px solid #e2e8ef;font-size:12.5px;color:#6b7684;line-height:1.6}
+footer a{color:#256a4c}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Window Replacement Cost Calculator</h1>
+  <p class="sub">Estimate material and labor costs for window replacement in 2026, using published public market price medians and regional labor multipliers. This repository is the standalone demo of <a href="https://windowcosthq.com/window-cost-calculator/">windowcosthq.com</a>.</p>
+
+  <div class="card">
+    <div class="grid">
+      <div>
+        <label for="type">Window type</label>
+        <select id="type"><option value="double_hung">Double-Hung</option>
+<option value="single_hung">Single-Hung</option>
+<option value="casement">Casement</option>
+<option value="sliding">Sliding</option>
+<option value="picture">Picture / Fixed</option>
+<option value="bay">Bay / Bow</option>
+<option value="awning">Awning</option></select>
+      </div>
+      <div>
+        <label for="qty">Number of windows</label>
+        <input id="qty" type="number" min="1" max="60" value="8">
+      </div>
+      <div>
+        <label for="mat">Vinyl material grade</label>
+        <select id="mat"><option value="standard_vinyl">Standard Vinyl</option>
+<option value="premium_vinyl">Premium Vinyl (foam-filled)</option>
+<option value="vinyl_wood_look">Woodgrain Vinyl</option>
+<option value="fiberglass">Fiberglass</option></select>
+      </div>
+      <div>
+        <label for="glass">Glass package</label>
+        <select id="glass"><option value="double_pane">Double-pane</option>
+<option value="low_e">Double-pane + Low-E</option>
+<option value="triple_pane">Triple-pane</option></select>
+      </div>
+      <div>
+        <label for="stories">Home stories</label>
+        <select id="stories">
+          <option value="1">1 story</option>
+          <option value="2">2 stories</option>
+          <option value="3">3+ stories</option>
+        </select>
+      </div>
+      <div>
+        <label for="state">State</label>
+        <select id="state"><option value="">National average</option>
+<option value="AZ">AZ</option>
+<option value="CA">CA</option>
+<option value="CO">CO</option>
+<option value="FL">FL</option>
+<option value="GA">GA</option>
+<option value="IL">IL</option>
+<option value="MA">MA</option>
+<option value="MD">MD</option>
+<option value="MI">MI</option>
+<option value="MN">MN</option>
+<option value="NC">NC</option>
+<option value="NJ">NJ</option>
+<option value="NY">NY</option>
+<option value="OH">OH</option>
+<option value="OR">OR</option>
+<option value="PA">PA</option>
+<option value="TN">TN</option>
+<option value="TX">TX</option>
+<option value="VA">VA</option>
+<option value="WA">WA</option></select>
+      </div>
+    </div>
+    <button id="calc">Calculate cost</button>
+  </div>
+
+  <div class="ad">Advertisement</div>
+
+  <div class="card res" id="res">
+    <div class="total" id="total">$0</div>
+    <div class="rng" id="rng"></div>
+    <div class="brk">
+      <div><div class="k">Materials</div><div class="v" id="matv">$0</div></div>
+      <div><div class="k">Labor</div><div class="v" id="labv">$0</div></div>
+      <div><div class="k">Per window</div><div class="v" id="perv">$0</div></div>
+    </div>
+  </div>
+
+  <div class="lead" id="lead" style="display:none">
+    <h3>Get exact local pricing</h3>
+    <p>National averages vary by up to 35% between areas. Get ZIP-level pricing and licensed installer quotes on the full site.</p>
+    <a class="cta" href="https://windowcosthq.com/window-cost-calculator/">Open the live calculator on windowcosthq.com &rarr;</a>
+    <p class="tc">Estimates only, not a contractor quote. Price ranges are public market medians and may differ from local bids. Data version 2026-11.</p>
+  </div></div>
+
+  <div class="ad">Advertisement</div>
+</div>
+
+<footer>
+  <p><strong>WindowCostHQ</strong> — independent window replacement cost guides and calculators. Full site and more calculators: <a href="https://windowcosthq.com/">windowcosthq.com</a></p>
+  <p>Calculator code MIT licensed. Price model is compiled by WindowCostHQ from public market listings; see <code>docs/data-model.md</code>. Estimates are not contractor quotes.</p>
+</footer>
+
+<script>
+const M = {"meta": {"category": "vinyl window replacement", "market": "US", "data_version": "2026-11", "currency": "USD", "note": "\u4ef7\u683c\u533a\u95f4\u4e3a\u516c\u5f00\u5e02\u573a\u62a5\u4ef7\u7684\u4e2d\u4f4d\u533a\u95f4\uff0c\u975e\u6210\u4ea4\u4ef7"}, "window_types": {"double_hung": {"label": "Double-Hung", "base_sqft": 15, "complexity": 1.0}, "single_hung": {"label": "Single-Hung", "base_sqft": 12, "complexity": 0.92}, "casement": {"label": "Casement", "base_sqft": 14, "complexity": 1.18}, "sliding": {"label": "Sliding", "base_sqft": 16, "complexity": 1.05}, "picture": {"label": "Picture / Fixed", "base_sqft": 20, "complexity": 0.85}, "bay": {"label": "Bay / Bow", "base_sqft": 30, "complexity": 1.55}, "awning": {"label": "Awning", "base_sqft": 11, "complexity": 1.12}}, "materials": {"standard_vinyl": {"label": "Standard Vinyl", "material_per_sqft": 22, "efficiency": 1.0}, "premium_vinyl": {"label": "Premium Vinyl (foam-filled)", "material_per_sqft": 34, "efficiency": 1.08}, "vinyl_wood_look": {"label": "Woodgrain Vinyl", "material_per_sqft": 40, "efficiency": 1.1}, "fiberglass": {"label": "Fiberglass", "material_per_sqft": 52, "efficiency": 1.15}}, "glass": {"double_pane": {"label": "Double-pane", "add_per_sqft": 6}, "low_e": {"label": "Double-pane + Low-E", "add_per_sqft": 12}, "triple_pane": {"label": "Triple-pane", "add_per_sqft": 28}}, "labor": {"base_per_window": 185, "per_sqft": 9.5, "story_multiplier": {"1": 1.0, "2": 1.12, "3": 1.28}, "removal_per_window": 55}, "state_multiplier": {"CA": 1.22, "NY": 1.28, "MA": 1.2, "WA": 1.14, "IL": 1.1, "NJ": 1.16, "TX": 0.94, "FL": 0.96, "AZ": 0.95, "GA": 0.93, "NC": 0.92, "TN": 0.9, "OH": 0.95, "MI": 0.97, "PA": 1.02, "CO": 1.05, "OR": 1.12, "MN": 1.08, "VA": 1.0, "MD": 1.12}, "default_state_multiplier": 1.0, "range_spread": 0.18};
+const $ = id => document.getElementById(id);
+const money = n => '$' + Math.round(n).toLocaleString('en-US');
+
+function calc() {
+  const wt = M.window_types[$('type').value];
+  const mt = M.materials[$('mat').value];
+  const gl = M.glass[$('glass').value];
+  const n  = Math.max(1, Math.min(60, parseInt($('qty').value) || 1));
+  const st = parseInt($('stories').value);
+  const sm = M.state_multiplier[$('state').value] ?? M.default_state_multiplier;
+  const sqft = wt.base_sqft;
+
+  const matPer = sqft * mt.material_per_sqft * wt.complexity + sqft * gl.add_per_sqft;
+  const labPer = (M.labor.base_per_window + sqft * M.labor.per_sqft) * wt.complexity
+               + M.labor.removal_per_window;
+  const storyMul = M.labor.story_multiplier[String(st)] ?? 1;
+
+  const materials = matPer * n * sm;
+  const labor     = labPer * n * sm * storyMul;
+  const total     = materials + labor;
+  const spread    = M.range_spread;
+
+  $('total').textContent = money(total);
+  $('rng').textContent = 'Typical range ' + money(total*(1-spread)) + ' – ' + money(total*(1+spread))
+                       + ' for ' + n + ' ' + wt.label.toLowerCase() + ' windows';
+  $('matv').textContent = money(materials);
+  $('labv').textContent = money(labor);
+  $('perv').textContent = money(total/n);
+  $('res').classList.add('on');
+  $('lead').style.display = 'block';
+  $('res').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+$('calc').addEventListener('click', calc);
+calc();
+</script>
+</body>
+</html>
